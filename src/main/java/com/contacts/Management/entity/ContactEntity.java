@@ -1,4 +1,4 @@
-package com.contacts.Management.Entity;
+package com.contacts.Management.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,4 +1,4 @@
-package com.contacts.Management.Exception;
+package com.contacts.Management.exception;
 
 
 

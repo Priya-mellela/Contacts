@@ -2,8 +2,8 @@ package com.contacts.Management.controller;
 
 import com.contacts.Management.dto.ContactUser;
 import com.contacts.Management.dto.ContactResponse;
-import com.contacts.Management.Exception.ContactServiceException;
-import com.contacts.Management.Service.ContactService;
+import com.contacts.Management.exception.ContactServiceException;
+import com.contacts.Management.service.ContactService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,7 +76,7 @@ public class ContactController {
         }
     }
 
-    @DeleteMapping("/batch")
+    @DeleteMapping("/batchdelete")
     public ResponseEntity<ContactResponse> batchDeleteContacts(@RequestBody List<Long> contactIds) {
         try {
             contactService.batchDeleteContacts(contactIds);

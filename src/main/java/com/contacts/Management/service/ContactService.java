@@ -1,14 +1,13 @@
-package com.contacts.Management.Service;
+package com.contacts.Management.service;
 
 
 import com.contacts.Management.dto.ContactUser;
-import com.contacts.Management.Exception.ContactServiceException;
+import com.contacts.Management.exception.ContactServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
