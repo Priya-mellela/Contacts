@@ -39,6 +39,17 @@ public class ContactEntity {
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
+    @Column(name = "is_active")
+    private Boolean isActive = true;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     @PrePersist
     public void prePersist() {
         this.createdDate = LocalDateTime.now();
