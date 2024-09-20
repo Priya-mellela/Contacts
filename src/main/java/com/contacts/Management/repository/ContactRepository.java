@@ -11,18 +11,16 @@ import java.util.Optional;
 
 public interface ContactRepository extends JpaRepository<ContactEntity, Long> {
 
-    @Override
-    @Query("SELECT c FROM ContactEntity c WHERE c.isActive = true")
-    List<ContactEntity> findAll();
+    List<ContactEntity> findAllByIsActive(@Param("isActive") Boolean isActive);
 
-    @Query("SELECT c FROM ContactEntity c WHERE c.id = :id AND c.isActive = true")
+    @Query(value = "SELECT * FROM contacts c WHERE c.id = :id AND c.is_active = true",nativeQuery = true)
     Optional<ContactEntity> findActiveById(@Param("id") Long id);
 
     @Modifying
-    @Query("UPDATE ContactEntity c SET c.isActive = false WHERE c.id = :id")
+    @Query(value="UPDATE contacts c SET c.is_active = false WHERE c.id = :id", nativeQuery = true)
     void softDeleteById(@Param("id") Long id);
 
     @Modifying
-    @Query("UPDATE ContactEntity c SET c.isActive = false WHERE c.id IN :ids")
+    @Query(value= "UPDATE contacts c SET c.is_active = false WHERE c.id IN :ids",nativeQuery = true)
     void batchSoftDeleteByIds(@Param("ids") List<Long> ids);
 }

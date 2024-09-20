@@ -38,7 +38,7 @@ public class ContactService {
     }
 
     public List<ContactUser> getAllContacts() throws ContactServiceException {
-        List<ContactEntity> contactEntities = contactRepository.findAll();
+        List<ContactEntity> contactEntities = contactRepository.findAllByIsActive(true);
         return contactEntities.stream()
                 .map(contactMapper::toDto)
                 .collect(Collectors.toList());
