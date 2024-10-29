@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.contacts.Management.util.AppConstants.CONTACTS_BASE_URI;
+import static com.contacts.Management.util.AppConstants.DELETE_SUCCESS_MESSAGE;
+
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping(CONTACTS_BASE_URI)
 public class ContactController {
 
     private final ContactService contactService;
@@ -69,21 +72,22 @@ public class ContactController {
     public ResponseEntity<ContactResponse> deleteContact(@PathVariable Long id) {
         try {
             contactService.deleteContact(id);
-            return ResponseEntity.ok(new ContactResponse("Contact deleted successfully", false, null));
+            return ResponseEntity.ok(new ContactResponse(DELETE_SUCCESS_MESSAGE, false, null));
         } catch (ContactServiceException e) {
             return ResponseEntity.status(e.getHttpStatus())
                     .body(new ContactResponse(e.getMessage(), true, null));
         }
     }
 
-    @DeleteMapping("/batchdelete")
+    @DeleteMapping("/batch-delete")
     public ResponseEntity<ContactResponse> batchDeleteContacts(@RequestBody List<Long> contactIds) {
         try {
             contactService.batchDeleteContacts(contactIds);
-            return ResponseEntity.ok(new ContactResponse("Contacts deleted successfully", false, null));
+            return ResponseEntity.ok(new ContactResponse(DELETE_SUCCESS_MESSAGE, false, null));
         } catch (ContactServiceException e) {
             return ResponseEntity.status(e.getHttpStatus())
                     .body(new ContactResponse(e.getMessage(), true, null));
         }
     }
+
 }
